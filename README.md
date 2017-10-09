@@ -46,8 +46,13 @@ $ git clone https://github.com/cyan21/php-composer-demo.git
 $ cd php-demo
 $ composer install
 $ vendor/bin/phpunit
-
 ```
+
+> to redownload packages from scratch, make sure:
+>  - vendor folder is empty
+>  - composer cache is deleted (cf. composer clear-cache command)
+>  - delete the composer.lock
+
 
 create tarball 
 
@@ -55,10 +60,12 @@ create tarball
 tar -czvf artyInfo.tar.gz composer.json composer.lock README.md src tests
 ```
 
+
 deploy to artifactory
 
 ```
 curl -H 'X-JFrog-Art-Api: <API_KEY>' <ARTIFACTORY_HOST>/<PHP_REPO> -T artyInfo.tar.gz
+
 ```
 
 Example 
@@ -66,4 +73,3 @@ Example
 ```
 curl -H 'X-JFrog-Art-Api: AKCp2WXXJ5gyi72WFnDgsCu8SAno112Gwbmg1rAd3UqMxA3GNpBFTRRw4hteo1nSnnXURajae' http://192.168.41.41:8081/artifactory/php-local/ -T /usr/share/nginx/html/myapp/vendor/Ych/artyInfo.tar.gz
 ```
-
