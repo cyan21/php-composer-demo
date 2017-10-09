@@ -1,0 +1,23 @@
+{
+    "name": "Ych/Artifactory",
+    "version": "0.1",
+    "description": "demo purpose",
+    "authors": [
+        {
+            "name": "Yann CHAYSINH",
+            "email": "yann.chaysinh@gmail.com"
+        }
+    ],
+    "require": {
+ 	"php": ">=5.3.0",
+        "nategood/httpful": "0.2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ych\\ArtifactoryInfo\\": "src/"
+        }
+    }
+}
