@@ -5,7 +5,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://192.168.41.41:8081/artifactory/api/composer/php-remote"
+            "url": "http://192.168.41.41:8081/artifactory/api/composer/packagist"
         },
 	{
         "packagist.org": false

@@ -7,6 +7,9 @@ composer package which makes a call to the Artifactory API to get license info
 
 install nginx, PHP-fmp, php, php-xml (for phpUnit)
 
+### Manually
+
+On Centos7
 ```
 $ yum install -y nginx php fmp-php php-xml
 ```
@@ -18,22 +21,57 @@ $ curl -sS https://getcomposer.org/installer | php
 $ chmod +x composer.phar
 $ mv composer.phar /usr/local/bin/composer
 $ composer -V
-
 ```
 
-## Configuration for PHP
+Configuration for PHP
 
+```
 /etc/php.ini => cgi.fix_pathinfo=0
 /etc/php-fpm.d/www.conf ==> listen
 /etc/nginx/conf.d/default.conf
 disable SELINUX 
 systemctl restart nginx php-fpm
+```
+
+### with Docker 
+
+```
+docker pull composer
+docker run --rm -ti  --volume <PATH_TO_CLONED_GITHUB_REPO>:/app  composer /bin/bash
+```
 
 
-## Configuration for Artifactory
+## Composer configuration 
 
-Edit Artifactory configuration in auth.json and config.json in the Artifactory_config folder
-Move them to ~/.config/composer
+Edit the following files 
+
+* Artifactory_config/auth.json 
+
+```
+    "http-basic": {
+        "<ART_HOST>:<ART_PORT>": {
+            "username": "<USER>",
+            "password": "<PASS>"
+        }
+```
+
+* Artifactory_config/config.json 
+```
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://<ART_HOST>:<ART_PORT>/artifactory/api/composer/<REMOTE_REPO>"
+        },
+	{
+        "packagist.org": false
+	}
+```
+
+Copy them to $COMPOSER_HOME
+
+```
+cp Artifactory_config/* $COMPOSER_HOME/
+```
 
 
 ## How to 
